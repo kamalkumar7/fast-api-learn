@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 
 app = FastAPI(
     title="My New App",
@@ -24,4 +24,15 @@ def about():
         "app_name": app.title,
         "description": app.description,
         "version": app.version
+    }
+
+@app.get("/request/info")
+def request_info(request: Request):
+    "Request info endpoint that returns details about the incoming request."
+    # This endpoint returns a JSON response with details about the incoming request, such as the client's IP address, user agent, and headers.
+    return {
+        "user_agent": request.headers.get("user-agent"),
+        "headers": dict(request.headers),
+        "client_host": request.client.host if request.client else None,
+
     }
