@@ -7,3 +7,4 @@ app = FastAPI(
 @app.get("/")
 def root():
     return {"message":"Pincode Lookup working"}
+
