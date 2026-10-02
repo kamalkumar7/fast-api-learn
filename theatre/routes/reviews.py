@@ -73,7 +73,7 @@ def update_review(
 
     session.add(review)
     session.commit()
-    session.refresh()
+    session.refresh(review)
     return review
 
 
@@ -88,5 +88,4 @@ def delete_review(
    
     session.delete(review)
     session.commit()
-    session.refresh()
-    return {"message","Review deleted"}
+    return {"message": "Review deleted"}
